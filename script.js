@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // URL base del backend. ¡IMPORTANTE: DEBES CAMBIAR ESTO A LA URL DE TU BACKEND EN RENDER UNA VEZ DESPLEGADO!
     // EJEMPLO: const API_BASE_URL = 'https://nombre-de-tu-backend.onrender.com/api';
-    const API_BASE_URL = 'https://gauchito-gil-api.onrender.com'; // Por ahora, sigue siendo localhost para pruebas locales
+    const API_BASE_URL = 'https://gauchito-gil-api.onrender.com/api'; // Por ahora, sigue siendo localhost para pruebas locales
 
     // --- Funciones de Utilidad ---
 
