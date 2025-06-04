@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } catch (error) {
                 console.error('Error al enviar el mensaje:', error);
-                showToast(`Error: ${error.message}`); // Muestra un mensaje de error más específico
+                showToast(`Error: ${error.message}`, true); // Muestra un mensaje de error más específico
             }
         }
     });
