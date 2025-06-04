@@ -20,10 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageError = document.getElementById('messageError');
 
     // Array para almacenar peticiones y testimonios. Ahora se llenará desde el backend.
-    let posts = [];
+    let posts = []; // IMPORTANTE: Eliminamos la carga desde localStorage
 
-    // URL base del backend. ¡IMPORTANTE: Cambiar a la URL de Render cuando esté desplegado!
-    const API_BASE_URL = 'http://localhost:5000/api';
+    // URL base del backend. ¡IMPORTANTE: DEBES CAMBIAR ESTO A LA URL DE TU BACKEND EN RENDER UNA VEZ DESPLEGADO!
+    // EJEMPLO: const API_BASE_URL = 'https://nombre-de-tu-backend.onrender.com/api';
+    const API_BASE_URL = 'https://gauchito-gil-api.onrender.com'; // Por ahora, sigue siendo localhost para pruebas locales
 
     // --- Funciones de Utilidad ---
 

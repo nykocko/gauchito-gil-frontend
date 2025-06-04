@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_BASE_URL = 'http://localhost:5000/api'; // *** IMPORTANTE: Cambiar a la URL de Render cuando esté desplegado ***
+    const API_BASE_URL = 'https://gauchito-gil-api.onrender.com'; // *** IMPORTANTE: Cambiar a la URL de Render cuando esté desplegado ***
 
     const loginSection = document.getElementById('loginSection');
     const adminSection = document.getElementById('adminSection');
