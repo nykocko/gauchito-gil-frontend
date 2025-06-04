@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Devoción al Gauchito Gil: Testimonios y Peticiones</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-red-900 text-white font-open-sans">
+    <header
+      class="gauchito-header relative overflow-hidden text-center py-6 md:py-8 border-b-4 border-yellow-500"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-red-900 to-transparent"
+      ></div>
+      <div class="container mx-auto px-4 relative z-10">
+        <img
+          src="./img/gauchito-gil.jpg"
+          alt="Imagen del Gauchito Gil"
+          class="mx-auto rounded-full w-32 h-32 md:w-40 md:h-40 object-cover border-4 border-yellow-500 shadow-xl mb-4"
+        />
+        <h1
+          class="text-4xl md:text-5xl font-merriweather font-bold mb-2 text-yellow-500 drop-shadow-lg"
+        >
+          Devoción al Gauchito Gil
+        </h1>
+        <p class="text-xl md:text-2xl font-open-sans italic text-yellow-100">
+          "Promesa es deuda, Gauchito, no te olvidaremos"
+        </p>
+        <button
+          id="openModalBtn"
+          class="mt-8 bg-yellow-500 hover:bg-yellow-600 text-red-900 font-bold py-3 px-8 rounded-full shadow-xl transition duration-300 ease-in-out transform hover:scale-105"
+        >
+          Enviar Testimonio o Petición
+        </button>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:py-12">
+      <section
+        class="bg-red-700 p-6 md:p-8 rounded-lg shadow-xl mb-10 border-b-4 border-yellow-500"
+      >
+        <h2
+          class="text-3xl font-merriweather font-bold text-yellow-400 mb-4 text-center"
+        >
+          ¿Quién fue el Gauchito Gil?
+        </h2>
+        <p class="text-lg leading-relaxed text-gray-100 text-justify">
+          Antonio Mamerto Gil Núñez, conocido popularmente como el **Gauchito
+          Gil**, es una figura legendaria y objeto de una profunda devoción
+          popular en Argentina, especialmente en la provincia de Corrientes.
+          Nació alrededor de 1840 y su vida terminó trágicamente en 1878.
+          <br /><br />
+          Se lo recuerda como un gaucho bueno, que robaba a los ricos para dar a
+          los pobres, un justiciero y un defensor de los humildes. Su figura es
+          la de un hombre de principios, que se negó a pelear en la Guerra de la
+          Triple Alianza y luego a unirse a las filas de los federales contra
+          los autonomistas, por lo que fue declarado desertor. Capturado por la
+          policía, fue llevado a la vera de un camino en la zona de Mercedes,
+          Corrientes.
+          <br /><br />
+          Antes de su ejecución, un sargento, que lo iba a degollar, recibió la
+          advertencia del Gauchito de que su hijo estaba gravemente enfermo y
+          que si lo mataba, debería rezarle en el futuro si quería que su hijo
+          se salvara. El sargento no creyó, pero al regresar a su casa y
+          encontrar a su hijo agonizando, recordó las palabras del Gauchito.
+          Desesperado, le rezó y el niño se salvó. Desde ese momento, el
+          sargento se convirtió en el primer difusor de su figura milagrosa, y
+          su martirio lo elevó a la categoría de santo popular. Miles de devotos
+          acuden a su santuario en Mercedes, Corrientes, para pedirle favores y
+          agradecerle los milagros concedidos, honrándolo con cintas rojas,
+          velas y oraciones.
+        </p>
+      </section>
+
+      <section class="mb-8 flex justify-center space-x-4">
+        <button id="filterAll" class="filter-btn active-filter">Todos</button>
+        <button id="filterMiracles" class="filter-btn">Testimonios</button>
+        <button id="filterPetitions" class="filter-btn">Peticiones</button>
+      </section>
+
+      <section id="postsContainer" class="flex flex-col space-y-6"></section>
+      <div id="paginationControls" class="flex justify-center items-center space-x-2 mt-8 mb-12">
+    </div>
+    </main>
+
+    <div
+      id="petitionModal"
+      class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden"
+    >
+      <div
+        class="bg-red-700 rounded-lg shadow-xl p-6 w-full max-w-md border-t-4 border-yellow-500 relative"
+      >
+        <button
+          id="closeModalBtn"
+          class="absolute top-3 right-3 text-white hover:text-yellow-400 text-2xl font-bold"
+        >
+          &times;
+        </button>
+        <h2
+          class="text-3xl font-merriweather font-bold text-yellow-500 mb-6 text-center"
+        >
+          Envía tu Mensaje
+        </h2>
+        <form id="petitionForm" class="space-y-4">
+          <div>
+            <label for="name" class="block text-gray-100 text-lg font-bold mb-2"
+              >Tu Nombre (opcional):</label
+            >
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200"
+              placeholder="Anónimo"
+            />
+          </div>
+          <div>
+            <label for="type" class="block text-gray-100 text-lg font-bold mb-2"
+              >Tipo:</label
+            >
+            <select
+              id="type"
+              name="type"
+              class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200"
+              required
+            >
+              <option value="">Selecciona...</option>
+              <option value="testimonio">Testimonio</option>
+              <option value="peticion">Petición</option>
+            </select>
+            <p id="typeError" class="text-red-300 text-sm mt-1 hidden">
+              Por favor, selecciona el tipo.
+            </p>
+          </div>
+          <div>
+            <label
+              for="message"
+              class="block text-gray-100 text-lg font-bold mb-2"
+              >Tu Mensaje:</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200"
+              placeholder="Describe tu petición o testimonio..."
+              required
+              minlength="10"
+            ></textarea>
+            <p id="messageError" class="text-red-300 text-sm mt-1 hidden">
+              El mensaje debe tener al menos 10 caracteres.
+            </p>
+          </div>
+          <button
+            type="submit"
+            class="bg-yellow-500 hover:bg-yellow-600 text-red-900 font-bold py-3 px-6 rounded-full w-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+          >
+            Enviar
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="toast"
+      class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-green-700 text-white py-3 px-6 rounded-lg shadow-xl opacity-0 transition-opacity duration-300 z-50"
+    >
+      ¡Mensaje enviado con éxito!
+    </div>
+
+    <footer
+      class="bg-red-900 text-yellow-500 py-6 mt-8 border-t-4 border-yellow-500"
+    >
+      <div class="container mx-auto px-4 text-center">
+        <p>
+          &copy; 2024 Devoción al Gauchito Gil. Todos los derechos reservados.
+        </p>
+        <p class="mt-2">Diseñado con ❤️ para la comunidad devota.</p>
+
+        <div class="mt-4 pt-4 border-t border-yellow-600">
+          <h4 class="text-lg font-bold mb-2">Contacto</h4>
+          <p>¿Preguntas o comentarios? Contáctanos:</p>
+          <p class="mt-1">
+            <a
+              href="mailto:tu_correo@example.com"
+              class="hover:text-yellow-400 transition-colors duration-200"
+              >tu_correo@example.com</a
+            >
+          </p>
+          <p class="mt-2 text-sm text-yellow-600">
+            Síguenos en redes sociales:
+          </p>
+          <div class="flex justify-center space-x-4 mt-2">
+            <a
+              href="https://facebook.com/tupagina"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-yellow-400 transition-colors duration-200"
+            >
+              <img
+                src="https://img.icons8.com/ios-filled/24/null/facebook-new.png"
+                alt="Facebook"
+                class="inline-block w-6 h-6"
+              />
+            </a>
+            <a
+              href="https://instagram.com/tuperfil"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-yellow-400 transition-colors duration-200"
+            >
+              <img
+                src="https://img.icons8.com/ios-filled/24/null/instagram-new--v1.png"
+                alt="Instagram"
+                class="inline-block w-6 h-6"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

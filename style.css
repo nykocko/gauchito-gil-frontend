@@ -1,0 +1,102 @@
+/* Custom CSS para el proyecto del Gauchito Gil */
+
+/* Fuentes personalizadas */
+.font-merriweather {
+    font-family: 'Merriweather', serif;
+}
+
+.font-open-sans {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Estilos para el HEADER con imagen de fondo y efecto */
+.gauchito-header {
+    background-image: url('./img/gauchito.jpg'); /* Tu imagen del Gauchito */
+    background-size: cover;
+    background-position: center;
+    position: relative; /* Asegura que el z-index de los elementos internos funcione */
+}
+
+/* Asegura que el overlay del gradiente se vea */
+.gauchito-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(153, 27, 27, 0.7) 0%, rgba(127, 29, 29, 0.5) 50%, rgba(127, 29, 29, 0.8) 100%); /* Degradado de rojo oscuro a semi-transparente */
+    z-index: 1; /* Para que el gradiente esté sobre la imagen pero debajo del contenido */
+}
+
+.gauchito-header > .container {
+    position: relative;
+    z-index: 2; /* Para que el contenido (título, botón) esté sobre el gradiente */
+}
+
+/* --- Estilos para los botones de filtro --- */
+.filter-btn {
+    /* Estilos base para todos los botones de filtro (inactivos) */
+    /* background-color: theme('colors.yellow.500') !important;  */
+    background-color: #d97706 !important; /* Tailwind yellow-500 */
+    /* color: theme('colors.red.900') !important; */
+    color: #7f1d1d !important;              /* Tailwind red-900 */
+    border-radius: 9999px !important;
+    padding: 0.5rem 1.25rem !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Agregamos el hover directamente */
+.filter-btn:hover {
+    /* background-color: theme('colors.yellow.600') !important; */
+    background-color: #df9f55 !important; /* Tailwind yellow-600 */
+}
+
+
+.filter-btn.active-filter {
+    /* Estilos cuando el botón está activo */
+    /* background-color: theme('colors.yellow.800') !important; */
+    background-color: #f59e0b !important; /* Tailwind yellow-800 */
+    /* color: theme('colors.white') !important; */
+    color: #ffffff !important;           /* Blanco puro */
+    /* border-color: theme('colors.yellow.900') !important; */
+    border-color: #713f12 !important; /* Tailwind yellow-900 */
+    border-width: 2px !important;
+    border-style: solid !important;
+}
+
+
+/* Estilos para los posts de peticiones/milagros */
+.post-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.post-card:hover {
+    transform: translateY(-5px); /* Pequeño levantamiento al pasar el mouse */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+}
+
+/* Estilos para el scrollbar (opcional, para una estética más coherente) */
+/* Firefox */
+body {
+    scrollbar-width: thin;
+    scrollbar-color: #fcd34d #991b1b; /* color del pulgar / color de la pista */
+}
+
+/* Chrome, Edge, Safari */
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #991b1b; /* red-800 */
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #fcd34d; /* yellow-400 */
+    border-radius: 10px;
+    border: 3px solid #991b1b;
+}

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administración Gauchito Gil</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Estilos generales para el admin, puedes usar los de style.css si quieres */
+      body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #1a202c; /* gray-900 */
+        color: #e2e8f0; /* gray-200 */
+      }
+      .font-merriweather {
+        font-family: 'Merriweather', serif;
+      }
+      .admin-table th,
+      .admin-table td {
+        padding: 0.75rem;
+        border-bottom: 1px solid #4a5568; /* gray-700 */
+        text-align: left;
+      }
+      .admin-table th {
+        background-color: #2d3748; /* gray-800 */
+      }
+      .admin-table tr:hover {
+        background-color: #242c3d; /* Un gris más oscuro al pasar el mouse */
+      }
+      .modal {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      .modal-content {
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-200 p-8">
+    <div
+      id="loginSection"
+      class="max-w-md mx-auto bg-gray-800 p-8 rounded-lg shadow-lg"
+    >
+      <h2 class="text-3xl font-merriweather font-bold text-center text-yellow-300 mb-6">
+        Login de Administrador
+      </h2>
+      <form id="adminLoginForm">
+        <div class="mb-4">
+          <label for="adminEmail" class="block text-gray-400 text-sm font-bold mb-2"
+            >Email:</label
+          >
+          <input
+            type="email"
+            id="adminEmail"
+            name="email"
+            class="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-500"
+            required
+          />
+        </div>
+        <div class="mb-6">
+          <label
+            for="adminPassword"
+            class="block text-gray-400 text-sm font-bold mb-2"
+            >Contraseña:</label
+          >
+          <input
+            type="password"
+            id="adminPassword"
+            name="password"
+            class="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-500"
+            required
+          />
+        </div>
+        <div class="flex items-center justify-between">
+          <button
+            type="submit"
+            class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors duration-200"
+          >
+            Iniciar Sesión
+          </button>
+        </div>
+        <p id="loginError" class="text-red-500 text-center mt-4 hidden"></p>
+      </form>
+    </div>
+
+    <div id="adminSection" class="hidden">
+      <h1
+        class="text-4xl font-merriweather font-bold text-center text-yellow-300 mb-8"
+      >
+        Panel de Administración de Posts
+      </h1>
+
+      <div class="flex justify-end mb-4">
+        <button
+          id="logoutBtn"
+          class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors duration-200"
+        >
+          Cerrar Sesión
+        </button>
+      </div>
+
+      <div class="overflow-x-auto bg-gray-800 rounded-lg shadow-lg">
+        <table class="min-w-full admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Tipo</th>
+              <th>Mensaje</th>
+              <th>Fecha</th>
+              <th>Aprobado</th>
+              <th>Comentarios</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="adminPostsTableBody">
+            </tbody>
+        </table>
+      </div>
+
+      <div
+        id="editPostModal"
+        class="modal fixed inset-0 flex items-center justify-center hidden z-50"
+      >
+        <div class="modal-content bg-gray-800 p-8 rounded-lg shadow-xl w-11/12 md:w-2/3 lg:w-1/2">
+          <h2 class="text-2xl font-merriweather font-bold text-yellow-300 mb-6">
+            Editar Post
+          </h2>
+          <form id="editPostForm">
+            <input type="hidden" id="editPostId" />
+            <div class="mb-4">
+              <label for="editName" class="block text-gray-400 text-sm font-bold mb-2"
+                >Nombre:</label
+              >
+              <input
+                type="text"
+                id="editName"
+                class="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-500"
+              />
+            </div>
+            <div class="mb-4">
+              <label for="editType" class="block text-gray-400 text-sm font-bold mb-2"
+                >Tipo:</label
+              >
+              <select
+                id="editType"
+                class="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-500"
+              >
+                <option value="testimonio">Testimonio</option>
+                <option value="peticion">Petición</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <label
+                for="editMessage"
+                class="block text-gray-400 text-sm font-bold mb-2"
+                >Mensaje:</label
+              >
+              <textarea
+                id="editMessage"
+                rows="6"
+                class="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-500"
+              ></textarea>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="text-xl font-merriweather font-semibold text-yellow-300 mb-3">
+                Comentarios
+              </h3>
+              <div id="editCommentsList" class="max-h-48 overflow-y-auto mb-4 p-2 bg-gray-700 rounded">
+                </div>
+              <p id="noCommentsMessage" class="text-gray-400 text-sm hidden">No hay comentarios para este post.</p>
+            </div>
+
+            <div class="flex justify-end gap-4 mt-6">
+              <button
+                type="button"
+                id="closeEditModalBtn"
+                class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors duration-200"
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors duration-200"
+              >
+                Guardar Cambios
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div
+        id="adminToast"
+        class="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg hidden"
+      >
+        Mensaje de éxito
+      </div>
+    </div>
+
+    <script src="admin.js"></script>
+  </body>
+</html>

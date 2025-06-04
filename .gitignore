@@ -1,0 +1,7 @@
+# Archivos de OS
+.DS_Store
+Thumbs.db
+
+# Ignorar carpetas de build si tuvieras un framework (React, Vue, etc.)
+# build/
+# dist/
