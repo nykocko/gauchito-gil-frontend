@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const postsContainer = document.getElementById('postsContainer');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const toast = document.getElementById('toast');
+    const loadingMessage = document.getElementById('loadingMessage');
 
     // Nuevas variables para paginación
     const postsPerPage = 15; // Cantidad de posts por página
@@ -69,6 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para obtener posts aprobados del backend
     const fetchPosts = async (filterType = currentFilter) => {
+        postsContainer.innerHTML = ''; // Limpiar el contenedor inmediatamente
+        loadingMessage.classList.remove('hidden'); // Mostrar el mensaje de carga
+
         try {
             // La ruta /api/posts ya devuelve solo los posts aprobados
             const response = await fetch(`${API_BASE_URL}/posts`);
