@@ -39,12 +39,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Función para mostrar el toast (mensaje de éxito)
-    const showToast = (message) => {
+   // Función para mostrar el toast (mensaje de éxito)
+    const showToast = (message, isError = false) => {
         toast.textContent = message;
         toast.classList.remove('hidden');
+        
+        // Establecer el color de fondo según el tipo de mensaje
+        if (isError) {
+            toast.classList.remove('bg-green-700');
+            toast.classList.add('bg-red-700');
+        } else {
+            toast.classList.remove('bg-red-700');
+            toast.classList.add('bg-green-700');
+        }
+
+        // Añadir una clase para hacerlo visible (por ejemplo, 'opacity-100')
+        toast.classList.add('opacity-100'); // <--- Añadir esta línea
+
         setTimeout(() => {
-            toast.classList.add('hidden');
+            toast.classList.remove('opacity-100'); // Eliminar para desvanecer
+            toast.classList.add('opacity-0'); // Añadir para desvanecer
+            setTimeout(() => {
+                toast.classList.add('hidden'); // Ocultar después de desvanecer
+            }, 300); // Esta duración debe coincidir con la duración de tu transición
         }, 3000); // El toast desaparece después de 3 segundos
     };
 
